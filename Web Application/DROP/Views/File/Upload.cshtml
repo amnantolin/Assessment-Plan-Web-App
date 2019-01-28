@@ -1,0 +1,52 @@
+﻿@model DROP.Models.FileViewModels
+
+@{
+    if (Session["accID"] == null)
+    {
+        Response.Redirect("~/Account/Login");
+    }
+    else if (Session["test"] == null)
+    {
+        Response.Redirect("~/Home/AdminPage");
+    }
+}
+
+<!DOCTYPE html>
+<html>
+<body>
+    <br />
+    <h2>
+        UPLOAD FILES
+        <small>
+            <a href="/Home/AdminPage" class="btn btn-primary pull-right" role="button" aria-pressed="true" title="Go Back to Home Page" >< < Back</a>
+        </small>
+    </h2>
+    <hr />
+    <div class="jumbotron"> 
+        <div class="text-left">
+            <h3>INSTRUCTIONS</h3>
+            <hr />
+            <h5>> One time multiple uploads are supported.</h5>
+            <h5>> Upload files in Excel (.xlsx) format only, or else it will be ignored in the process.</h5>
+            <h5>> The proper naming convention for files must be followed or else it will be also ignored.</h5>
+            <h5>> [Quarter]Q[SY]_[Cousename]_[Section].xlsx"  (Ex. 3Q1819_COE131L_C1.xlsx)</h5>
+            <h5>> Each Excel file/s must contain the correct assessment tool (Ex. SW1, CW2, etc.).</h5>
+            <hr />
+        </div>
+        @using (Html.BeginForm("Upload", "File", null, FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            <div class="form-group">
+                <input type="file" id="dataFile" name="upload" class="bg-primary" multiple="multiple" accept=".xls,.xlsx" title="Click to Choose Files"/>
+            </div>
+            @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+            <div>
+                <input type="submit" value="Submit" class="btn btn-primary" title="Upload Files" />
+            </div>
+        }
+    </div>
+</body>
+</html>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

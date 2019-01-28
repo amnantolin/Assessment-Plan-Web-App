@@ -1,0 +1,40 @@
+﻿@model DROP.Models.FileViewModels
+
+@{
+    if (Session["accID"] == null)
+    {
+        Response.Redirect("~/Account/Login");
+    }
+}
+
+<!DOCTYPE html>
+<html>
+<body>
+    <br />
+    <h2>
+        GENERATE ASSESSMENT PLAN
+        <small>
+            <a href="/File/Upload" class="btn btn-primary pull-right" role="button" aria-pressed="true" title="Reupload Files">< < Reupload Files</a>
+        </small>
+    </h2>
+    <hr />
+    @using (Html.BeginForm("APost", "File", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form", id="myform" }))
+    {
+        <h4>QUARTER</h4>
+        @Html.TextBoxFor(m => m.quarter, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.quarter, "", new { @class = "text-danger" })
+        <br />
+        <h4>YEAR (ex. 1617)</h4>
+        @Html.TextBoxFor(m => m.year, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.year, "", new { @class = "text-danger" })
+        <br />
+        <br />
+        <input type="submit" value="Confirm" class="btn btn-primary" id="btnSubmit" title="Generate Assessment Plan" />
+    }
+
+</body>
+</html>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

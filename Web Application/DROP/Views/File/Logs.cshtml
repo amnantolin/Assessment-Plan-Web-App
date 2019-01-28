@@ -1,0 +1,53 @@
+﻿@model DROP.Models.FileViewModels
+@{
+    if (Session["accID"] == null)
+    {
+        Response.Redirect("~/Account/Login");
+    }
+
+    else if (Session["test"] != null)
+    {
+        Response.Redirect("~/Home/MainPage");
+    }
+}
+
+<!DOCTYPE html>
+<html>
+<body>
+    <br />
+    <h2>
+        USER FILE LOGS
+        <small>
+            <a href="/Home/AdminPage" class="btn btn-primary pull-right" role="button" aria-pressed="true" title="Go Back to Home Page">< < Back</a>
+        </small>
+    </h2>
+    <hr />
+
+    <table class="table table-responsive table-hover">
+        <thead>
+            <tr>
+                <th class="bg-primary" scope="col">PROCESS ID </th>
+                <th class="bg-primary" scope="col">ACCOUNT ID </th>
+                <th class="bg-primary" scope="col">ACCOUNT NAME </th>
+                <th class="bg-primary" scope="col">FILENAME </th>
+                <th class="bg-primary" scope="col">DATE AND TIME CREATED </th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (ViewBag.listlogs != null)
+            {
+                foreach (var files in ViewBag.listlogs)
+                {
+                    <tr id="row_@files.filename">
+                        <td>@files.pid</td>
+                        <td>@files.acc_id</td>
+                        <td>@files.fname @files.lname</td>
+                        <td>@files.filename</td>
+                        <td>@files.cdate</td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</body>
+</html>

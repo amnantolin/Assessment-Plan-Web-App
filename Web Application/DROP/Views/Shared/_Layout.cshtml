@@ -1,0 +1,60 @@
+﻿@{ 
+    if (Session["accID"] == null)
+    {
+        ViewBag.view = "Login";
+        ViewBag.controller = "Account";
+    }
+
+    else if (Session["test"] == null)
+    {
+        ViewBag.view = "AdminPage";
+        ViewBag.controller = "Home";
+    }
+
+    else if (Session["test"] != null)
+    {
+        ViewBag.view = "MainPage";
+        ViewBag.controller = "Home";
+    }
+}
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="image/x-icon" href="~/Content/favicon.ico" />
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <div class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header" title="Home Page">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("SADapp", (string)ViewBag.view, (string)ViewBag.controller, new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li title="Members' Information">@Html.ActionLink("About", "About", "Account")</li>
+                    <li title="Contact Information">@Html.ActionLink("Contact", "Contact", "Account")</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

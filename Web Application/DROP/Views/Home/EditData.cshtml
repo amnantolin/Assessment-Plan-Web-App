@@ -1,0 +1,84 @@
+﻿@model DROP.Models.HomeViewModel
+
+@{
+    if (Session["accID"] == null)
+    {
+        Response.Redirect("~/Account/Login");
+    }
+
+    else if (Session["test"] != null)
+    {
+        Response.Redirect("~/Home/MainPage");
+    }
+}
+
+<!DOCTYPE html>
+<html>
+<body>
+    <br />
+    <h2>
+        EDIT ASSESSMENT PLAN
+        <small>
+            <a href="/Home/AdminPage" class="btn btn-primary pull-right" role="button" aria-pressed="true" title="Go Back to Home Page">< < Back</a>
+        </small>
+    </h2>
+    <hr />
+
+    <div class="row">
+        @using (Html.BeginForm("UpdateData", "Home", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+        {
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <h4>STUDENT OUTCOME</h4>
+            if (ViewBag.soList != null)
+            {
+                @Html.DropDownListFor(m => m.so_id, ViewBag.soList as SelectList, "-- Select Student Outcome --", new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.so_id, "", new { @class = "text-danger" })
+            }
+            <br />
+            <h4>PERFORMANCE INDICATOR</h4>
+            @Html.DropDownListFor(m => m.pi_id, new SelectList(""), "-- Select Performance Indicator --", new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.pi_id, "", new { @class = "text-danger" })
+            <br />
+            <h4>COURSE</h4>
+            @Html.DropDownListFor(m => m.course_id, ViewBag.coList as SelectList, "-- Select Course --", new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.course_id, "", new { @class = "text-danger" })
+            <br />
+            <h4>ASSESSMENT TOOL</h4>
+            @Html.DropDownListFor(m => m.at_id, ViewBag.atList as SelectList, "-- Select Assessment Tool --", new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.at_id, "", new { @class = "text-danger" })
+            <br />
+            <h4>TARGET(%)</h4>
+            @Html.TextBoxFor(m => m.target, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.target, "", new { @class = "text-danger" })
+            <br />
+            <br />  
+            <input type="submit" value="Confirm" class="btn btn-primary" id="btnSubmit" title="Update Data" />
+        }
+    </div>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#so_id").change(function () {
+                var soid = $(this).val();
+
+                $.ajax({
+                    type: "Post",
+                    url: "/Home/ListPI?so_id=" + soid,
+                    contentType: "html",
+                    success: function (response) {
+                        debugger
+                        $("#pi_id").empty();
+                        $("#pi_id").append(response);
+                    }
+                })
+            })
+        })
+    </script>
+
+</body>
+</html>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

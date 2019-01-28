@@ -1,0 +1,87 @@
+﻿
+@{
+    if (Session["accID"] == null)
+    {
+        Response.Redirect("~/Account/Login");
+    }
+
+    else if (Session["test"] != null)
+    {
+        Response.Redirect("~/Home/MainPage");
+    }
+}
+
+<!DOCTYPE html>
+<html>
+<body>
+    <hr />
+
+    <div class="navbar navbar-default" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+            <li title="View All File Logs of the User"><a href="@Url.Action("Logs", "File")">View Logs </a></li>
+            <li title="Edit Relationships Between SO, PI, AT, Course, and Target"><a href="@Url.Action("EditData", "Home")">Edit Data </a></li>
+            <li class="dropdown" title="Create or Delete Accounts">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Manage Users <span class="caret"></span></a>
+                <ul class="dropdown-menu" role="menu">
+                    <li class="divider"></li>
+                    <li title="Create Account"><a href="@Url.Action("AddUser", "Home")">Create New Account </a></li>
+                    <li class="divider"></li>
+                    <li title="Delete Account"><a href="@Url.Action("DeleteUser", "Home")">Delete Existing Account </a></li>
+                    <li class="divider"></li>
+                </ul>
+            </li>
+            <li class="dropdown" title="Manage Account">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Account <span class="caret"></span></a>
+                <ul class="dropdown-menu" role="menu">
+                    <li class="divider"></li>
+                    <li title="Change Account Password"><a href="@Url.Action("ChangePass", "Account")">Change Password</a></li>
+                    <li class="divider"></li>
+                    <li title="Logout Account"><a href="@Url.Action("Logout", "Account")">Logout</a></li>
+                    <li class="divider"></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <hr />
+    <div>
+        <h3>Hello ADMIN @Session["fn"].ToString() @Session["ln"].ToString() </h3>
+        <br />
+        <div class="jumbotron">
+            <div style="text-align:center">
+                <img src="~/Content/Ws4I.gif" width="500" />
+            </div>
+            <br />
+        </div>
+    </div>
+
+    <div class="modal fade" id="modalcreate">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <a href="#" class="close" data-dismiss="modal">&times;</a>
+                    <h3 class="modal-title"> @(TempData["MessageTitle"])</h3>
+                </div>
+                <div class="modal-body">
+                    <h4> @(TempData["MessagePrompt"])</h4>
+                </div>
+                <div class="modal-footer">
+                    <a href="#" class="btn btn-primary" data-dismiss="modal">Confirm</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript">
+        var ismodal = @(TempData["flag"]);
+        $(document).ready(function () {
+            if (ismodal != null)
+            {
+                $("#modalcreate").modal('show');
+            }
+        });
+    </script>
+
+</body>
+</html>

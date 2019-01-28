@@ -1,0 +1,219 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="projectModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.5" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="at">
+    <Key>
+      <PropertyRef Name="at_id" />
+    </Key>
+    <Property Name="at_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="at_desc" Type="text" Nullable="false" />
+  </EntityType>
+  <EntityType Name="copiatt">
+    <Key>
+      <PropertyRef Name="copiatt_id" />
+    </Key>
+    <Property Name="copiatt_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="pi_id" Type="int" Nullable="false" />
+    <Property Name="course_id" Type="int" Nullable="false" />
+    <Property Name="at_id" Type="int" Nullable="false" />
+    <Property Name="target" Type="float" Nullable="false" />
+  </EntityType>
+  <EntityType Name="course">
+    <Key>
+      <PropertyRef Name="course_id" />
+    </Key>
+    <Property Name="course_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="coursename" Type="varchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <EntityType Name="outcome">
+    <Key>
+      <PropertyRef Name="out_id" />
+    </Key>
+    <Property Name="out_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="pid" Type="int" Nullable="false" />
+    <Property Name="acc_id" Type="int" Nullable="false" />
+    <Property Name="filename" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="cdate" Type="datetime" Precision="0" Nullable="false" />
+  </EntityType>
+  <EntityType Name="pi">
+    <Key>
+      <PropertyRef Name="pi_id" />
+    </Key>
+    <Property Name="pi_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="so_id" Type="int" Nullable="false" />
+    <Property Name="pi_desc" Type="text" Nullable="false" />
+  </EntityType>
+  <EntityType Name="process">
+    <Key>
+      <PropertyRef Name="pid" />
+    </Key>
+    <Property Name="pid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="copiatt_id" Type="int" Nullable="false" />
+    <Property Name="quarter" Type="int" Nullable="false" />
+    <Property Name="year" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="so">
+    <Key>
+      <PropertyRef Name="so_id" />
+    </Key>
+    <Property Name="so_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="so_desc" Type="text" Nullable="false" />
+  </EntityType>
+  <EntityType Name="user">
+    <Key>
+      <PropertyRef Name="acc_id" />
+    </Key>
+    <Property Name="acc_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="type_id" Type="int" Nullable="false" />
+    <Property Name="FName" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="MName" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="LName" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="username" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="password" Type="varchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <EntityType Name="usertype">
+    <Key>
+      <PropertyRef Name="type_id" />
+    </Key>
+    <Property Name="type_id" Type="int" Nullable="false" />
+    <Property Name="type" Type="varchar" MaxLength="5" Nullable="false" />
+  </EntityType>
+  <Association Name="copiatt_ibfk_1">
+    <End Role="pi" Type="Self.pi" Multiplicity="1" />
+    <End Role="copiatt" Type="Self.copiatt" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="pi">
+        <PropertyRef Name="pi_id" />
+      </Principal>
+      <Dependent Role="copiatt">
+        <PropertyRef Name="pi_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="copiatt_ibfk_2">
+    <End Role="course" Type="Self.course" Multiplicity="1" />
+    <End Role="copiatt" Type="Self.copiatt" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="course">
+        <PropertyRef Name="course_id" />
+      </Principal>
+      <Dependent Role="copiatt">
+        <PropertyRef Name="course_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="copiatt_ibfk_3">
+    <End Role="at" Type="Self.at" Multiplicity="1" />
+    <End Role="copiatt" Type="Self.copiatt" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="at">
+        <PropertyRef Name="at_id" />
+      </Principal>
+      <Dependent Role="copiatt">
+        <PropertyRef Name="at_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="outcome_ibfk_1">
+    <End Role="process" Type="Self.process" Multiplicity="1" />
+    <End Role="outcome" Type="Self.outcome" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="process">
+        <PropertyRef Name="pid" />
+      </Principal>
+      <Dependent Role="outcome">
+        <PropertyRef Name="pid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="outcome_ibfk_2">
+    <End Role="user" Type="Self.user" Multiplicity="1" />
+    <End Role="outcome" Type="Self.outcome" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="user">
+        <PropertyRef Name="acc_id" />
+      </Principal>
+      <Dependent Role="outcome">
+        <PropertyRef Name="acc_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="pi_ibfk_1">
+    <End Role="so" Type="Self.so" Multiplicity="1" />
+    <End Role="pi" Type="Self.pi" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="so">
+        <PropertyRef Name="so_id" />
+      </Principal>
+      <Dependent Role="pi">
+        <PropertyRef Name="so_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="process_ibfk_2">
+    <End Role="copiatt" Type="Self.copiatt" Multiplicity="1" />
+    <End Role="process" Type="Self.process" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="copiatt">
+        <PropertyRef Name="copiatt_id" />
+      </Principal>
+      <Dependent Role="process">
+        <PropertyRef Name="copiatt_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="user_ibfk_1">
+    <End Role="usertype" Type="Self.usertype" Multiplicity="1" />
+    <End Role="user" Type="Self.user" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="usertype">
+        <PropertyRef Name="type_id" />
+      </Principal>
+      <Dependent Role="user">
+        <PropertyRef Name="type_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="projectModelStoreContainer">
+    <EntitySet Name="at" EntityType="Self.at" Schema="project" store:Type="Tables" />
+    <EntitySet Name="copiatt" EntityType="Self.copiatt" Schema="project" store:Type="Tables" />
+    <EntitySet Name="course" EntityType="Self.course" Schema="project" store:Type="Tables" />
+    <EntitySet Name="outcome" EntityType="Self.outcome" Schema="project" store:Type="Tables" />
+    <EntitySet Name="pi" EntityType="Self.pi" Schema="project" store:Type="Tables" />
+    <EntitySet Name="process" EntityType="Self.process" Schema="project" store:Type="Tables" />
+    <EntitySet Name="so" EntityType="Self.so" Schema="project" store:Type="Tables" />
+    <EntitySet Name="user" EntityType="Self.user" Schema="project" store:Type="Tables" />
+    <EntitySet Name="usertype" EntityType="Self.usertype" Schema="project" store:Type="Tables" />
+    <AssociationSet Name="copiatt_ibfk_1" Association="Self.copiatt_ibfk_1">
+      <End Role="pi" EntitySet="pi" />
+      <End Role="copiatt" EntitySet="copiatt" />
+    </AssociationSet>
+    <AssociationSet Name="copiatt_ibfk_2" Association="Self.copiatt_ibfk_2">
+      <End Role="course" EntitySet="course" />
+      <End Role="copiatt" EntitySet="copiatt" />
+    </AssociationSet>
+    <AssociationSet Name="copiatt_ibfk_3" Association="Self.copiatt_ibfk_3">
+      <End Role="at" EntitySet="at" />
+      <End Role="copiatt" EntitySet="copiatt" />
+    </AssociationSet>
+    <AssociationSet Name="outcome_ibfk_1" Association="Self.outcome_ibfk_1">
+      <End Role="process" EntitySet="process" />
+      <End Role="outcome" EntitySet="outcome" />
+    </AssociationSet>
+    <AssociationSet Name="outcome_ibfk_2" Association="Self.outcome_ibfk_2">
+      <End Role="user" EntitySet="user" />
+      <End Role="outcome" EntitySet="outcome" />
+    </AssociationSet>
+    <AssociationSet Name="pi_ibfk_1" Association="Self.pi_ibfk_1">
+      <End Role="so" EntitySet="so" />
+      <End Role="pi" EntitySet="pi" />
+    </AssociationSet>
+    <AssociationSet Name="process_ibfk_2" Association="Self.process_ibfk_2">
+      <End Role="copiatt" EntitySet="copiatt" />
+      <End Role="process" EntitySet="process" />
+    </AssociationSet>
+    <AssociationSet Name="user_ibfk_1" Association="Self.user_ibfk_1">
+      <End Role="usertype" EntitySet="usertype" />
+      <End Role="user" EntitySet="user" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

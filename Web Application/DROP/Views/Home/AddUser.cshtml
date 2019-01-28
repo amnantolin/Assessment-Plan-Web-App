@@ -1,0 +1,95 @@
+﻿@model DROP.Models.HomeViewModel
+
+@{
+    if (Session["accID"] == null)
+    {
+        Response.Redirect("~/Account/Login");
+    }
+
+    else if (Session["test"] != null)
+    {
+        Response.Redirect("~/Home/MainPage");
+    }
+}
+
+<!DOCTYPE html>
+<html>
+<body>
+    <br />
+    <h2>
+        CREATE ACCOUNT
+        <small>
+            <a href="/Home/AdminPage" class="btn btn-primary pull-right" role="button" aria-pressed="true" title="Go Back to Home Page">< < Back</a>
+        </small>
+    </h2>
+    <hr />
+
+    <div class="row">
+        <div class="col-md-8">
+            <section id="adduser">
+                @using (Html.BeginForm("AddData", "Home", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                {
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.FName, new { @class = "col-md-2 control-label" })
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(m => m.FName, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.FName, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.MName, new { @class = "col-md-2 control-label" })
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(m => m.MName, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.MName, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.LName, new { @class = "col-md-2 control-label" })
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(m => m.LName, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.LName, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.username, new { @class = "col-md-2 control-label" })
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(m => m.username, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.username, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.password, new { @class = "col-md-2 control-label" })
+                        <div class="col-md-5">
+                            @Html.PasswordFor(m => m.password, new { @class = "form-control" })
+
+                            @Html.ValidationMessageFor(m => m.password, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-offset-2">
+                            @{
+                                foreach (var x in Model.Type)
+                                {
+                                    @Html.RadioButtonFor(m => m.SelectedType, x.type_id, new { @class = "col-md-1", @checked = "checked" }) @x.type
+                                    <br />
+                                }
+                            }
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Create Account" class="btn btn-block btn-primary" id="btnSubmit" title="Create Account" />
+                        </div>
+                    </div>
+                }
+            </section>
+        </div>
+    </div>
+
+</body>
+</html>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

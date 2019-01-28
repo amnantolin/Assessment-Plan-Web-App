@@ -1,0 +1,128 @@
+﻿@model DROP.Models.HomeViewModel
+
+@{
+    if (Session["accID"] == null)
+    {
+        Response.Redirect("~/Account/Login");
+    }
+
+    else if (Session["test"] != null)
+    {
+        Response.Redirect("~/Home/MainPage");
+    }
+}
+
+<!DOCTYPE html>
+<html>
+<body>
+    <br />
+    <h2>
+        DELETE ACCOUNT
+        <small>
+            <a href="/Home/AdminPage" class="btn btn-primary pull-right" role="button" aria-pressed="true" title="Go Back to Home Page">< < Back</a>
+        </small>
+    </h2>
+    <hr />
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <form class="navbar-form navbar-right" role="search">
+            @using (Html.BeginForm("DeleteUser", "Home", FormMethod.Get))
+            {
+                @Html.TextBox("searching", null, new { @class = "form-control", @placeholder = "Search User" })
+                <input type="submit" class="btn btn-default" value="Search" title="Search User" />
+            }
+        </form>
+    </div>
+    <br />
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+
+    <table class="table table-responsive table-hover">
+        <thead>
+            <tr>
+                <th class="bg-primary" scope="col">ACCOUNT ID</th>
+                <th class="bg-primary" scope="col">FIRST NAME</th>
+                <th class="bg-primary" scope="col">MIDDLE NAME</th>
+                <th class="bg-primary" scope="col">LAST NAME</th>
+                <th class="bg-primary" scope="col">USERNAME</th>
+                <th class="bg-primary" scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (ViewBag.UserList != null)
+            {
+                int count = 0;
+                foreach (var users in ViewBag.UserList)
+                {
+                    <tr id="row_@users.acc_id">
+                        <td>@users.acc_id</td>
+                        <td>@users.FName</td>
+                        <td>@users.MName</td>
+                        <td>@users.LName</td>
+                        <td>@users.username</td>
+                        <td><a href="#" class="btn btn-danger" onclick="ConfDelete(@users.acc_id)" title="Delete @users.FName @users.LName"><i class="glyphicon glyphicon-trash"></i></a></td>
+                    </tr>
+                    count++;
+                }
+
+                if (count < 1)
+                {
+                    <tr>
+                        <td colspan="3" style="color:red">
+                            <h3>USER NOT FOUND!</h3>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+
+    <input type="hidden" id="hiddenuserid" />
+
+    <div class="modal fade" id="mymodal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <a href="#" class="close" data-dismiss="modal">&times;</a>
+                    <h3 class="modal-title">Delete Account</h3>
+                </div>
+                <div class="modal-body">
+                    <h4>Account Will Be Permanently Deleted, Continue?</h4>
+                </div>
+                <div class="modal-footer">
+                    <a href="#" class="btn btn-primary" data-dismiss="modal">Cancel</a>
+                    <a href="#" class="btn btn-primary" onclick="DeleteData()">Confirm</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+
+        $(document).ready(function () { })
+
+        var ConfDelete = function (accountid) {
+
+            $("#hiddenuserid").val(accountid);
+            $("#mymodal").modal('show');
+        }
+
+        var DeleteData = function () {
+
+            var accid = $("#hiddenuserid").val();
+
+            $.ajax({
+
+                type: "POST",
+                url: "/Home/DeleteData",
+                data: { acc_id: accid },
+                success: function () {
+                    $("#mymodal").modal('hide');
+                    $("#row_" + accid).remove();
+                }
+            })
+        }
+
+    </script>
+
+</body>
+</html>

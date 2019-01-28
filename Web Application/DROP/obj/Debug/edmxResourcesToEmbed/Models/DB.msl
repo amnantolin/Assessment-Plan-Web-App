@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="projectModelStoreContainer" CdmEntityContainer="projectEntities">
+    <EntitySetMapping Name="users">
+      <EntityTypeMapping TypeName="projectModel.user">
+        <MappingFragment StoreEntitySet="user">
+          <ScalarProperty Name="acc_id" ColumnName="acc_id" />
+          <ScalarProperty Name="type_id" ColumnName="type_id" />
+          <ScalarProperty Name="FName" ColumnName="FName" />
+          <ScalarProperty Name="MName" ColumnName="MName" />
+          <ScalarProperty Name="LName" ColumnName="LName" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="password" ColumnName="password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="usertypes">
+      <EntityTypeMapping TypeName="projectModel.usertype">
+        <MappingFragment StoreEntitySet="usertype">
+          <ScalarProperty Name="type" ColumnName="type" />
+          <ScalarProperty Name="type_id" ColumnName="type_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ats">
+      <EntityTypeMapping TypeName="projectModel.at">
+        <MappingFragment StoreEntitySet="at">
+          <ScalarProperty Name="at_desc" ColumnName="at_desc" />
+          <ScalarProperty Name="at_id" ColumnName="at_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="outcomes">
+      <EntityTypeMapping TypeName="projectModel.outcome">
+        <MappingFragment StoreEntitySet="outcome">
+          <ScalarProperty Name="cdate" ColumnName="cdate" />
+          <ScalarProperty Name="filename" ColumnName="filename" />
+          <ScalarProperty Name="acc_id" ColumnName="acc_id" />
+          <ScalarProperty Name="pid" ColumnName="pid" />
+          <ScalarProperty Name="out_id" ColumnName="out_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="pis">
+      <EntityTypeMapping TypeName="projectModel.pi">
+        <MappingFragment StoreEntitySet="pi">
+          <ScalarProperty Name="so_id" ColumnName="so_id" />
+          <ScalarProperty Name="pi_desc" ColumnName="pi_desc" />
+          <ScalarProperty Name="pi_id" ColumnName="pi_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="processes">
+      <EntityTypeMapping TypeName="projectModel.process">
+        <MappingFragment StoreEntitySet="process">
+          <ScalarProperty Name="copiatt_id" ColumnName="copiatt_id" />
+          <ScalarProperty Name="year" ColumnName="year" />
+          <ScalarProperty Name="quarter" ColumnName="quarter" />
+          <ScalarProperty Name="pid" ColumnName="pid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="soes">
+      <EntityTypeMapping TypeName="projectModel.so">
+        <MappingFragment StoreEntitySet="so">
+          <ScalarProperty Name="so_desc" ColumnName="so_desc" />
+          <ScalarProperty Name="so_id" ColumnName="so_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="courses">
+      <EntityTypeMapping TypeName="projectModel.course">
+        <MappingFragment StoreEntitySet="course">
+          <ScalarProperty Name="coursename" ColumnName="coursename" />
+          <ScalarProperty Name="course_id" ColumnName="course_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="copiatts">
+      <EntityTypeMapping TypeName="projectModel.copiatt">
+        <MappingFragment StoreEntitySet="copiatt">
+          <ScalarProperty Name="target" ColumnName="target" />
+          <ScalarProperty Name="at_id" ColumnName="at_id" />
+          <ScalarProperty Name="course_id" ColumnName="course_id" />
+          <ScalarProperty Name="pi_id" ColumnName="pi_id" />
+          <ScalarProperty Name="copiatt_id" ColumnName="copiatt_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

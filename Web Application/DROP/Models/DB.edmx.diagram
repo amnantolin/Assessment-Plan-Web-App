@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="c74748940e76416ea740ccaf54c55faf" Name="Diagram1" ZoomLevel="65">
+        <EntityTypeShape EntityType="projectModel.user" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="projectModel.usertype" Width="1.5" PointX="0.75" PointY="3.875" />
+        <AssociationConnector Association="projectModel.user_ibfk_1" />
+        <EntityTypeShape EntityType="projectModel.at" Width="1.5" PointX="3.75" PointY="4.625" />
+        <EntityTypeShape EntityType="projectModel.outcome" Width="1.5" PointX="10.5" PointY="1" />
+        <EntityTypeShape EntityType="projectModel.pi" Width="1.5" PointX="3.75" PointY="1.5" />
+        <EntityTypeShape EntityType="projectModel.process" Width="1.5" PointX="8.25" PointY="1.25" />
+        <EntityTypeShape EntityType="projectModel.so" Width="1.5" PointX="3.75" PointY="7" />
+        <AssociationConnector Association="projectModel.outcome_ibfk_1" />
+        <EntityTypeShape EntityType="projectModel.course" Width="1.5" PointX="0.75" PointY="9.875" />
+        <EntityTypeShape EntityType="projectModel.copiatt" Width="1.5" PointX="6" PointY="5.25" />
+        <AssociationConnector Association="projectModel.copiatt_ibfk_3" />
+        <AssociationConnector Association="projectModel.copiatt_ibfk_1" />
+        <AssociationConnector Association="projectModel.copiatt_ibfk_2" />
+        <AssociationConnector Association="projectModel.process_ibfk_21" />
+        <AssociationConnector Association="projectModel.pi_ibfk_1" />
+        <AssociationConnector Association="projectModel.outcome_ibfk_21" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

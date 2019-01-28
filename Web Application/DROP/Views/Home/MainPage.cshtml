@@ -1,0 +1,77 @@
+﻿@{
+    if (Session["accID"] == null)
+    {
+        Response.Redirect("~/Account/Login");
+    }
+
+    else if (Session["test"] == null)
+    {
+        Response.Redirect("~/Home/AdminPage");
+    }
+}
+
+
+<!DOCTYPE html>
+<html>
+<body>
+    <hr />
+    <div class="navbar navbar-default" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+            <li title="Generate Assessment Plan"><a href="@Url.Action("Upload", "File")">Generate Assessment Plan </a></li>
+            <li title="Download Generated Assessment Plans"><a href="@Url.Action("Downloads", "File")">Downloads </a></li>
+            <li class="dropdown" title="Manage Account">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Account <span class="caret"></span></a>
+                <ul class="dropdown-menu" role="menu">
+                    <li class="divider"></li>
+                    <li title="Change Account Password"><a href="@Url.Action("ChangePass", "Account")">Change Password</a></li>
+                    <li class="divider"></li>
+                    <li title="Logout Account"><a href="@Url.Action("Logout", "Account")">Logout</a></li>
+                    <li class="divider"></li>
+                </ul>
+            </li>
+        </ul>
+
+    </div>
+    <hr />
+    <div>
+        <h3>Hello @Session["fn"].ToString()  @Session["ln"].ToString()</h3>
+        <br />
+        <div class="jumbotron">
+            <div style="text-align:center">
+                <img src="~/Content/tenor.gif" width="500" />
+            </div>
+            <br />
+        </div>
+    </div>
+
+    <div class="modal fade" id="modalcreate">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <a href="#" class="close" data-dismiss="modal">&times;</a>
+                    <h3 class="modal-title"> @(TempData["MessageTitle"])</h3>
+                </div>
+                <div class="modal-body">
+                    <h4> @(TempData["MessagePrompt"])</h4>
+                </div>
+                <div class="modal-footer">
+                    <a href="#" class="btn btn-primary" data-dismiss="modal">Confirm</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript">
+        var ismodal = @(TempData["flag"]);
+        $(document).ready(function () {
+            if (ismodal != null)
+            {
+                $("#modalcreate").modal('show');
+            }
+        });
+    </script>
+
+</body>
+</html>
+

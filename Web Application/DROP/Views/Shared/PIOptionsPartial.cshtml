@@ -1,0 +1,9 @@
+﻿
+<option value="">-- Select Performance Indicator --</option>
+@if(ViewBag.PIOptions != null)
+{
+    foreach(var item in ViewBag.PIOptions)
+    {
+        <option value="@item.Value">@item.Text</option>
+    }
+}

@@ -1,0 +1,73 @@
+﻿@model DROP.Models.FileViewModels
+@*@model IEnumerable<DROP.Models.outcome>*@
+@{
+    if (Session["accID"] == null)
+    {
+        Response.Redirect("~/Account/Login");
+    }
+    else if (Session["test"] == null)
+    {
+        Response.Redirect("~/Home/AdminPage");
+    }
+}
+
+<!DOCTYPE html>
+<html>
+<body>
+    <br />
+    <h2>
+        DOWNLOADS
+        <small>
+            <a href="/Home/AdminPage" class="btn btn-primary pull-right" role="button" aria-pressed="true" title="Go Back to Home Page">< < Back</a>
+        </small>
+    </h2>
+    <hr />
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <form class="navbar-form navbar-right" role="search">
+            @using (Html.BeginForm("Downloads", "File", FormMethod.Get))
+            {
+                @Html.TextBox("searching", null, new { @class= "form-control", @placeholder="Search Files" })
+                <input type="submit" class="btn btn-default" value="Search" title="Search File" />
+            }
+        </form>       
+    </div>
+    <br />
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+
+    <table class="table table-responsive table-hover">
+        <thead>
+            <tr>
+                <th class="bg-primary" scope="col">FILENAME </th>
+                <th class="bg-primary" scope="col">DATE AND TIME CREATED</th>
+                <th class="bg-primary" scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (ViewBag.filelist != null)
+            {
+                int count = 0;
+                foreach (var data in ViewBag.filelist)
+                {
+                    <tr id="row_@data.filename">
+                        <td>@data.filename</td>
+                        <td>@data.cdate</td>
+                        <td><a href="@Url.Action("getFile", "File", new { filename = data.filename })" class="btn btn-success" title="Download @data.filename"><i class="glyphicon glyphicon-download-alt"></i></a></td>
+                    </tr>
+                    count++;
+                }
+
+                if (count < 1)
+                {
+                    <tr>
+                        <td colspan="3" style="color:red">
+                            <h3>NO FILE FOUND!</h3>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+
+</body>
+</html>
