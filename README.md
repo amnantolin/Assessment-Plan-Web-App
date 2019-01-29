@@ -21,7 +21,7 @@
 
 ### HOW TO RUN
 >  1. Create first the Database, you can refer to the ERD included. You can use any aside from phpmyadmin as long as it can be detected by ADO.NET EF6. 
->  2. Connect the Database in the program using the ADO.Net. After that, edit the Web.config and edit the connection strings' information including the name and then change the all the **projectEntities** instances within the program with your new entity name.
+>  2. Connect the Database in the program using the ADO.Net. After that, edit the Web.config and edit the connection strings' information including the name and then change all the **projectEntities** instances within the program with your new entity name.
 >  3. Download all the package dependencies listed in packages folder using Visual Studio's NuGet Package Manager.
 >  4. Try to build the program, the browser must redirect you to the Login Page.
 
