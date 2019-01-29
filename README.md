@@ -26,4 +26,4 @@
 >  4. Try to build the program, the browser must redirect you to the Login Page.
 
 ### DISCLAIMER
-This is made for school project purpose only.
+> This is made for school project purpose only.
