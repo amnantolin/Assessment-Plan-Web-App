@@ -124,6 +124,7 @@ namespace DROP.Controllers
             string[] pi = ListPI();
             string[] asstool = ListAT();
             float[] studtarget = ListTarget();
+            int[] atid = ListATID();
 
             int studpass = 0;
             int studtot = 0;
@@ -157,7 +158,6 @@ namespace DROP.Controllers
             db.processes.Add(pro);
             db.SaveChanges();
 
-            //////////////////////////////////////////////////////////////////////////////////////////
             //Generate File Location
 
             if (Session["accID"] == null)
@@ -250,15 +250,21 @@ namespace DROP.Controllers
                             if (xlWorkSheet1.Cells[1, cCnt].Value2 != null)
                             {
                                 string columnName = xlWorkSheet1.Cells[1, cCnt].Value2;
-                                if (Regex.IsMatch(columnName, asstool[i], RegexOptions.IgnoreCase))
+                                ViewBag.id = atid[i];
+                                string[] atcase = ATcase();
+                                for (int j = 0; j < atcase.Length; j++) 
                                 {
-                                    str = 0;
-                                    for (rCnt = 2; rCnt <= rw; rCnt++)
+                                    string match = atcase[j];
+                                    if (Regex.IsMatch(columnName, match, RegexOptions.IgnoreCase | RegexOptions.Singleline)) 
                                     {
-                                        str = (int)(range.Cells[rCnt, cCnt] as Excel.Range).Value2;
-                                        grades.Add(str);
+                                        str = 0;
+                                        for (rCnt = 2; rCnt <= rw; rCnt++)
+                                        {
+                                            str = (int)(range.Cells[rCnt, cCnt] as Excel.Range).Value2;
+                                            grades.Add(str);
+                                        }
+                                        break;
                                     }
-                                    break;
                                 }
                             }
                         }
@@ -296,7 +302,6 @@ namespace DROP.Controllers
                 } while (ctr < 4);
             }
 
-            /////////////////////////////////////////////////////////////////////////////////////////
             //Generate Assessment Plan
             Excel.Workbook xlWorkBook2;
             Excel.Worksheet xlWorkSheet2;
@@ -416,9 +421,7 @@ namespace DROP.Controllers
                 b++;
             }
 
-            /////////////////////////////////////////////////////////////////////////////////////////
             //computation
-            ////////////////////////////////////
             int index1 = 0;
             int index2 = 0;
             for (int i = 3; i <= 72; i += 3)
@@ -573,6 +576,25 @@ namespace DROP.Controllers
             using (projectEntities db = new projectEntities())
             {
                 return db.ats.Join(db.copiatts, x => x.at_id, y => y.at_id, (x, y) => new { x, y }).OrderBy(xy => xy.y.copiatt_id).Where(xy => xy.x.at_id != 0 && xy.y.at_id != 0).Select(xy => xy.x.at_desc).ToArray();
+            }
+        }
+
+        //List all id of ListAT 
+        public int[] ListATID()
+        {
+            using (projectEntities db = new projectEntities())
+            {
+                return db.ats.Join(db.copiatts, x => x.at_id, y => y.at_id, (x, y) => new { x, y }).OrderBy(xy => xy.y.copiatt_id).Where(xy => xy.x.at_id != 0 && xy.y.at_id != 0).Select(xy => xy.x.at_id).ToArray();
+            }
+        }
+
+        //Get all cases depending on the current AT
+        public string[] ATcase()
+        {
+            using (projectEntities db = new projectEntities())
+            {
+                int currAT = ViewBag.id;
+                return db.atcases.Where(x => x.at_id == currAT).Select(x => x.cases).ToArray();
             }
         }
 

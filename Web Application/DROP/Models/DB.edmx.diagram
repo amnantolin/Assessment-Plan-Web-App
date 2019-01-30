@@ -22,6 +22,7 @@
         <AssociationConnector Association="projectModel.process_ibfk_21" />
         <AssociationConnector Association="projectModel.pi_ibfk_1" />
         <AssociationConnector Association="projectModel.outcome_ibfk_21" />
+        <EntityTypeShape EntityType="projectModel.atcase" Width="1.5" PointX="0.75" PointY="6.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

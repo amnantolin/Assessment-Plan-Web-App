@@ -12,6 +12,14 @@
           <Property Name="at_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="at_desc" Type="text" Nullable="false" />
         </EntityType>
+        <EntityType Name="atcase">
+          <Key>
+            <PropertyRef Name="atcase_id" />
+          </Key>
+          <Property Name="atcase_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="at_id" Type="int" Nullable="false" />
+          <Property Name="cases" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
         <EntityType Name="copiatt">
           <Key>
             <PropertyRef Name="copiatt_id" />
@@ -180,6 +188,7 @@
         </Association>
         <EntityContainer Name="projectModelStoreContainer">
           <EntitySet Name="at" EntityType="Self.at" Schema="project" store:Type="Tables" />
+          <EntitySet Name="atcase" EntityType="Self.atcase" Schema="project" store:Type="Tables" />
           <EntitySet Name="copiatt" EntityType="Self.copiatt" Schema="project" store:Type="Tables" />
           <EntitySet Name="course" EntityType="Self.course" Schema="project" store:Type="Tables" />
           <EntitySet Name="outcome" EntityType="Self.outcome" Schema="project" store:Type="Tables" />
@@ -281,6 +290,7 @@
             <End Role="user" EntitySet="users" />
             <End Role="outcome" EntitySet="outcomes" />
           </AssociationSet>
+          <EntitySet Name="atcases" EntityType="projectModel.atcase" />
         </EntityContainer>
         <EntityType Name="usertype">
           <Key>
@@ -457,6 +467,14 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="atcase">
+          <Key>
+            <PropertyRef Name="atcase_id" />
+          </Key>
+          <Property Name="atcase_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="at_id" Type="Int32" Nullable="false" />
+          <Property Name="cases" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -546,6 +564,15 @@
                 <ScalarProperty Name="course_id" ColumnName="course_id" />
                 <ScalarProperty Name="pi_id" ColumnName="pi_id" />
                 <ScalarProperty Name="copiatt_id" ColumnName="copiatt_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="atcases">
+            <EntityTypeMapping TypeName="projectModel.atcase">
+              <MappingFragment StoreEntitySet="atcase">
+                <ScalarProperty Name="cases" ColumnName="cases" />
+                <ScalarProperty Name="at_id" ColumnName="at_id" />
+                <ScalarProperty Name="atcase_id" ColumnName="atcase_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

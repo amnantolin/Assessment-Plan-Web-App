@@ -7,6 +7,14 @@
     <Property Name="at_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="at_desc" Type="text" Nullable="false" />
   </EntityType>
+  <EntityType Name="atcase">
+    <Key>
+      <PropertyRef Name="atcase_id" />
+    </Key>
+    <Property Name="atcase_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="at_id" Type="int" Nullable="false" />
+    <Property Name="cases" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
   <EntityType Name="copiatt">
     <Key>
       <PropertyRef Name="copiatt_id" />
@@ -175,6 +183,7 @@
   </Association>
   <EntityContainer Name="projectModelStoreContainer">
     <EntitySet Name="at" EntityType="Self.at" Schema="project" store:Type="Tables" />
+    <EntitySet Name="atcase" EntityType="Self.atcase" Schema="project" store:Type="Tables" />
     <EntitySet Name="copiatt" EntityType="Self.copiatt" Schema="project" store:Type="Tables" />
     <EntitySet Name="course" EntityType="Self.course" Schema="project" store:Type="Tables" />
     <EntitySet Name="outcome" EntityType="Self.outcome" Schema="project" store:Type="Tables" />

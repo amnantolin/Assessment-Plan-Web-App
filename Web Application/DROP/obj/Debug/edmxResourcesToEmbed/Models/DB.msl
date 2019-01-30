@@ -87,5 +87,14 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="atcases">
+      <EntityTypeMapping TypeName="projectModel.atcase">
+        <MappingFragment StoreEntitySet="atcase">
+          <ScalarProperty Name="cases" ColumnName="cases" />
+          <ScalarProperty Name="at_id" ColumnName="at_id" />
+          <ScalarProperty Name="atcase_id" ColumnName="atcase_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

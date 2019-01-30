@@ -34,5 +34,6 @@ namespace DROP.Models
         public virtual DbSet<so> soes { get; set; }
         public virtual DbSet<course> courses { get; set; }
         public virtual DbSet<copiatt> copiatts { get; set; }
+        public virtual DbSet<atcase> atcases { get; set; }
     }
 }

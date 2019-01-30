@@ -197,6 +197,9 @@
     <Compile Include="Models\at.cs">
       <DependentUpon>DB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\atcase.cs">
+      <DependentUpon>DB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\copiatt.cs">
       <DependentUpon>DB.tt</DependentUpon>
     </Compile>

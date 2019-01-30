@@ -56,6 +56,7 @@
       <End Role="user" EntitySet="users" />
       <End Role="outcome" EntitySet="outcomes" />
     </AssociationSet>
+    <EntitySet Name="atcases" EntityType="projectModel.atcase" />
   </EntityContainer>
   <EntityType Name="usertype">
     <Key>
@@ -232,4 +233,12 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <EntityType Name="atcase">
+    <Key>
+      <PropertyRef Name="atcase_id" />
+    </Key>
+    <Property Name="atcase_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="at_id" Type="Int32" Nullable="false" />
+    <Property Name="cases" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
 </Schema>
