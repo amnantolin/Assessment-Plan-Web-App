@@ -111,7 +111,7 @@ namespace DROP.Controllers
 
             //for searching capabilities in delete page
             List<HomeViewModel> listUser = db.users.Where(x => x.FName.StartsWith(searching) && x.type_id == 1 ||
-                                                               x.LName.StartsWith(searching) && x.type_id == 1 ||
+                                                               x.MName.StartsWith(searching) && x.type_id == 1 ||
                                                                x.LName.StartsWith(searching) && x.type_id == 1 ||
                                                                x.username.StartsWith(searching) && x.type_id == 1 ||
                                                                searching == null && x.type_id == 1).Select(x => new HomeViewModel { FName = x.FName, MName = x.MName, LName = x.LName, username = x.username, acc_id = x.acc_id }).ToList();
