@@ -29,6 +29,7 @@
 > This is an Assessment Plan Web Application project in partial fulfillment of the requirements for the course COE131L, System Analysis and Design Laboratory, under Engr. Meo Vincent Caya. 
 ______
 COE131L-C1-2Q1819 Group 2
+
 Core Programmers: 
 * [ANTOLIN, Arryll Mori](https://github.com/amnantolin)
 * [JAWOD, Danielle Nicole](https://github.com/dnojawod)
