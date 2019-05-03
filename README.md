@@ -32,6 +32,7 @@ COE131L-C1-2Q1819 Group 2
 Core Programmers: 
 * [ANTOLIN, Arryll Mori](https://github.com/amnantolin)
 * [JAWOD, Danielle Nicole](https://github.com/dnojawod)
+
 Documentation:
 * [ANTONIO, Marlon]
 * [De PANO, Claudette Jean](https://github.com/clauddepano)
