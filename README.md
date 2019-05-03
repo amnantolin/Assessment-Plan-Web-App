@@ -26,6 +26,14 @@
 >  4. Try to build the program, the browser must redirect you to the Login Page.
 
 ### DISCLAIMER
-> This is made for school project purpose only.
+> This is an Assessment Plan Web Application project in partial fulfillment of the requirements for the course COE131L, System Analysis and Design Laboratory, under Engr. Meo Vincent Caya. 
 ______
 COE131L-C1-2Q1819 Group 2
+Core Programmers: 
+* [ANTOLIN, Arryll Mori](https://github.com/amnantolin)
+* [JAWOD, Danielle Nicole](https://github.com/dnojawod)
+Documentation:
+* [ANTONIO, Marlon]
+* [De PANO, Claudette Jean](https://github.com/clauddepano)
+* [REYES, Jean Marc](https://github.com/jm18reyes)
+* [SANTOS, Denzel Antoinette]
