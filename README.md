@@ -26,7 +26,7 @@
 >  4. Try to build the program, the browser must redirect you to the Login Page.
 
 ### Acknowledgements
-> This is an Assessment Plan Web Application project in partial fulfillment of the requirements for the course COE131L, System Analysis and Design Laboratory, under Engr. Meo Vincent Caya. 
+> This is an Assessment Plan Web Application project in partial fulfillment of the requirements for the course COE131L, System Analysis and Design Laboratory, under Engr. Meo Vincent Caya, Mapúa University, Intramuros, Manila, Philippines.
 ______
 COE131L-C1-2Q1819 Group 2
 
